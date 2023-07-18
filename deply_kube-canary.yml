@@ -1,0 +1,7 @@
+- hosts: localhost
+  tasks:
+  - name: Deploy the train-schedule-kube-canary
+    k8s:
+      state: present
+      namespace: default
+      src: train-schedule-kube-canary.yml
