@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+  - name: Deploy the train-schedule-kube-canary
+    k8s:
+      state: present
+      definition: "{{ lookup('template', 'train-schedule-kube-canary.yml') | from_yaml }}"
+      validate_certs: no
+      namespace: default
+  - name: Deploy the train-schedule-kube
+    k8s:
+      state: present
+      validate_certs: no
+      namespace: default
+      definition: "{{ lookup('template', 'train-schedule-kube.yml') | from_yaml }}"
